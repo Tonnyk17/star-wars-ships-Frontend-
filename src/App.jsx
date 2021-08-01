@@ -1,10 +1,13 @@
 import './App.css';
-import { Header } from './views/molecules/Header';
+import { Home } from './views/pages/Home/Home';
+import { Layout } from './views/templates/Layout';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Layout>
+        <Home />
+      </Layout>
     </div>
   );
 }

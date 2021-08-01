@@ -5,7 +5,7 @@ import { SideMenu } from '../elements/SideMenu';
 import menuIcon from '../../assets/images/menu.svg';
 
 export const Header = () => {
-    const [isClose, setIsClose] = useState(Boolean);
+    const [isClose, setIsClose] = useState(true);
 
     const closeMenu = () => {
         setIsClose(!isClose);
@@ -13,7 +13,7 @@ export const Header = () => {
     return <>
         <HeaderStyle>
             <IconContainer isClose={isClose}>
-                <IconButton image={menuIcon} name='menu' onClick={closeMenu} />
+                <Icon image={menuIcon} name='menu' onClick={closeMenu} />
             </IconContainer>
             <SideMenu isClose={isClose} closeMenu={closeMenu} />
         </HeaderStyle>
@@ -27,6 +27,11 @@ const HeaderStyle = styled.div`
 `
 const IconContainer = styled.div`
     width: 90%;
+    height: 10vh;
     margin:0 auto;
-    display: ${p => p.isClose ? 'flex' : 'none'};
+    display: flex;
+   
+`
+const Icon = styled(IconButton)`
+    display: ${p => p.isClose ? 'initial' : 'none'};
 `
