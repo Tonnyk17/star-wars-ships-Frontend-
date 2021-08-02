@@ -27,7 +27,7 @@ const HeaderStyle = styled.div`
 `
 const IconContainer = styled.div`
     width: 90%;
-    height: 10vh;
+    height: 5vh;
     margin:0 auto;
     display: flex;
    

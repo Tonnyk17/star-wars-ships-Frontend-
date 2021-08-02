@@ -4,18 +4,31 @@ import { Color } from '../atoms/Colors';
 import { IconButton } from '../atoms/IconButton/IconButton';
 import { HeaderText } from '../atoms/Typography/HeaderText';
 import iconClose from '../../assets/images/close.svg'
+import { useHistory } from 'react-router-dom';
 
 export const SideMenu = ({ isClose, closeMenu }) => {
+    const history = useHistory();
+
+    const handleClick = route => {
+        closeMenu();
+        history.push(route);
+    }
     return <>
         <SideMenuStyles isClose={isClose}>
             <MenuButtonContainer>
-                <IconButton image={iconClose} name='closed' onClick={closeMenu} />
+                <IconButton
+                    image={iconClose}
+                    name='closed'
+                    onClick={closeMenu}
+                />
             </MenuButtonContainer>
             <MenuLogoContainer>
-                <MenuLogo src='https://logos-download.com/wp-content/uploads/2016/09/Star_Wars_logo-1.png' />
+                <MenuLogo src='https://firebasestorage.googleapis.com/v0/b/star-wars-ships.appspot.com/o/logo.png?alt=media&token=d5ca0344-d76c-4de7-af08-272b5c8ab63c' />
             </MenuLogoContainer>
-            <HeaderText onClick={closeMenu}>Home</HeaderText>
-            <HeaderText onClick={closeMenu}>Favorites</HeaderText>
+            <HeaderText
+                onClick={() => handleClick('/')}>Home</HeaderText>
+            <HeaderText
+                onClick={() => handleClick('/ships')}>Favorites</HeaderText>
         </SideMenuStyles>
     </>
 }
