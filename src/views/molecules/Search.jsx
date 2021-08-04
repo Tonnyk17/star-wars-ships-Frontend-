@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import { Color } from '../atoms/Colors';
 import searchIcon from '../../assets/images/search.svg';
 
-export const Search = () => {
+export const Search = ({onChange}) => {
+   
     return<>
         <SearchStyles>
-            <SearchInput placeholder='Search Starship...' onChange={(e) => console.log(e.target.value)}/>
+            <SearchInput placeholder='Search Starship...' onChange={onChange}/>
             <Icon src={searchIcon}/>
            
         </SearchStyles>
