@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Color } from '../../atoms/Colors';
 
 export const ShipsStyle = styled.div`
     width: 100%;

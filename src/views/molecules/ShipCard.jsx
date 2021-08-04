@@ -1,10 +1,18 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { selectShip } from '../../redux/actions';
 import { Color } from '../atoms/Colors';
 
-export const ShipCard = ({ onClick }) => {
+export const ShipCard = ({ onClick, shipData }) => {
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        onClick();
+        dispatch(selectShip(shipData))
+    }
     return <>
-        <ShipCardStyle onClick={onClick}>
+        <ShipCardStyle onClick={handleClick}>
             <ShipImage src='https://media.moddb.com/images/mods/1/11/10611/y-wingv2_1_2.png' />
         </ShipCardStyle>
     </>

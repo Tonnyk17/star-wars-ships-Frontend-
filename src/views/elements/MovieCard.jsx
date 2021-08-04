@@ -1,17 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { getShips } from '../../redux/actions';
 import { Color } from '../atoms/Colors';
 
-export const MovieCard = ({title}) => {
+export const MovieCard = ({ movie }) => {
+    const dispatch = useDispatch();
     const history = useHistory();
-
-    const showTitle = () => {
+    console.log(movie, movie.episodeID)
+    const showShips = () => {
         history.push('/ships')
-        console.log(title)
+        dispatch(getShips(movie.starshipConnection))
     }
     return <>
-        <MovieCardStyle onClick={showTitle}>
+        <MovieCardStyle onClick={showShips}>
             <MovieCardImage src='https://4.bp.blogspot.com/-0X-JYjNG7hg/UBJPKgyBxpI/AAAAAAAAJmQ/EZmnn41sW3g/s1600/Star+Wars+-+Attack+Of+The+Clones+(2002)+by+Drew+Struzan.jpg' alt='movie' />
         </MovieCardStyle>
     </>

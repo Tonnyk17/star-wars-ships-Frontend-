@@ -1,11 +1,6 @@
 
 import ApolloClient from 'apollo-boost';
-import { gql } from 'apollo-boost';
-
-const startGetFilms = payload => ({
-    type: 'START_GET_FILMS',
-    ...payload
-})
+import { gql, InMemoryCache } from 'apollo-boost';
 
 const successGetFilms = payload => ({
     type: 'SUCCESS_GET_FILMS',
@@ -13,10 +8,11 @@ const successGetFilms = payload => ({
 })
 export const getFilms = (payload) => {
     return dispatch => {
-        dispatch(startGetFilms());
+        
 
         const client = new ApolloClient({
-            uri: 'https://swapi.apis.guru/'
+            uri: 'https://swapi.apis.guru/',
+            cache: new InMemoryCache()
         });
 
         client.query({
@@ -50,7 +46,21 @@ export const getFilms = (payload) => {
             }
     }
     }
-            `}).then(response => dispatch(successGetFilms(response.data)))
+            `}).then(response => dispatch(successGetFilms(response.data.allFilms)))
     }
+}
+
+export const getShips = payload => dispatch => {
+    dispatch({
+        type: 'GET_SHIPS',
+        payload
+    })
+}
+
+export const selectShip = payload => dispatch => {
+    dispatch({
+        type: 'SELECT_SHIP',
+        payload
+    })
 }
   

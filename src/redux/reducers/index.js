@@ -6,6 +6,18 @@ const reducer = (state, action) => {
                 ...state,
                 starData : action.payload
             }
+
+        case 'GET_SHIPS' :
+            return{
+                ...state,
+                ships: action.payload
+            }
+
+        case  'SELECT_SHIP':
+            return{
+                ...state,
+                shipSelected: action.payload
+            }
         default :
             return state
     }

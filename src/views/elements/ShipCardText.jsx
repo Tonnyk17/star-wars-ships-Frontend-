@@ -1,51 +1,51 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Button } from '../atoms/Button';
 import { CardText } from '../atoms/Typography/CardText';
 
-export const ShipCardText = ({ isClose }) => {
+export const ShipCardText = () => {
+    const selector = useSelector(store => store.shipSelected);
     return <>
         <ShipTextStyle>
             <ShipTextContainer>
                 <CardText>Name:</CardText>
-                <CardText>CR90 corvette</CardText>
+                <CardText>{selector.name}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Model:</CardText>
-                <CardText>CR90 corvette</CardText>
+                <CardText>{selector.model}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Manufacturers:</CardText>
-                <CardText>Sienar Fleet Systems,
-                    Cyngus Spaceworks</CardText>
+                <CardText>{selector.manufacturers.map(item => item)}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Cost in credits:</CardText>
-                <CardText>840000</CardText>
+                <CardText>{selector.costInCredits}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Length: </CardText>
-                <CardText>38</CardText>
+                <CardText>{selector.length}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Max atmosphering speed: </CardText>
-                <CardText>1000</CardText>
+                <CardText>{selector.maxAtmospheringSpeed}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Crew: </CardText>
-                <CardText>5</CardText>
+                <CardText>{selector.crew}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Passengers: </CardText>
-                <CardText>75</CardText>
+                <CardText>{selector.passengers}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Starship class: </CardText>
-                <CardText>landing craft</CardText>
+                <CardText>{selector.starshipClass}</CardText>
             </ShipTextContainer>
             <ShipTextContainer>
-                <CardText>Films</CardText>
-                <CardText>Episode 4 A New Hope, Episode 4 A New Hope</CardText>
+                <CardText>Films:</CardText>
+                <CardText>{selector.filmConnection.films.map(item => `Episode ${item.episodeID} ${item.title}, `)}</CardText>
             </ShipTextContainer>
         </ShipTextStyle>
     </>
