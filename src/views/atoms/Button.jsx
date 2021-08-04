@@ -9,8 +9,8 @@ export const Button = ({ content, onClick }) => {
 }
 
 const ButtonStyles = styled.div`
-    width: 150px;
     height: 30px;
+    padding: 0 5px;
     border: 1px solid ${Color.yellowLight};
     line-height: 30px;
     color: ${Color.yellow};

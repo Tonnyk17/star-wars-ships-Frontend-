@@ -18,6 +18,17 @@ const reducer = (state, action) => {
                 ...state,
                 shipSelected: action.payload
             }
+        case  'ADD_FAVORITES':
+                return{
+                    ...state,
+                    favorites: [action.payload]
+                }
+        case  'REMOVE_FAVORITES':
+            console.log(action.payload)
+                return{
+                    ...state,
+                    favorites: state.favorites.filter(item => item.id !== action.payload)
+                    }
         default :
             return state
     }

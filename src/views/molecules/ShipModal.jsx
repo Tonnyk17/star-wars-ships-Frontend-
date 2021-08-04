@@ -6,7 +6,12 @@ import { IconButton } from '../atoms/IconButton/IconButton';
 import closeIcon from '../../assets/images/close.svg';
 import { Button } from '../atoms/Button';
 
-export const ShipModal = ({ onClick }) => {
+export const ShipModal = ({ onClick, buttonContent, buttonFunction }) => {
+    
+    const handleClick = () => {
+        onClick();
+        buttonFunction();
+    }
     return <>
         <ModalContent>
             <ModalStyles>
@@ -17,7 +22,7 @@ export const ShipModal = ({ onClick }) => {
                 <div>
                     <ShipCardText />
                     <ButtonContainer>
-                        <Button content={'Add to favorites'} onClick={onClick} />
+                        <Button content={buttonContent} onClick={handleClick} />
                     </ButtonContainer>
                 </div>
             </ModalStyles>
@@ -95,7 +100,7 @@ const ModalImage = styled.img`
 `;
 
 const ButtonContainer = styled.div`
-    margin-top: 10px;
+    margin-top: 40px;
     width: 100%;
     display: flex;
     justify-content: center;

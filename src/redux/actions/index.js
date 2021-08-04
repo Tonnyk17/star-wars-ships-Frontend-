@@ -63,4 +63,17 @@ export const selectShip = payload => dispatch => {
         payload
     })
 }
-  
+
+export const addFavorites = payload => dispatch => {
+    dispatch({
+        type: 'ADD_FAVORITES',
+        payload
+    })
+}
+
+export const removeFavorite = payload => dispatch => {
+    dispatch({
+        type: 'REMOVE_FAVORITES',
+        payload
+    })
+}

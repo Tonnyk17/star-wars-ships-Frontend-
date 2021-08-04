@@ -28,7 +28,7 @@ export const SideMenu = ({ isClose, closeMenu }) => {
             <HeaderText
                 onClick={() => handleClick('/')}>Home</HeaderText>
             <HeaderText
-                onClick={() => handleClick('/ships')}>Favorites</HeaderText>
+                onClick={() => handleClick('/favorites')}>Favorites</HeaderText>
         </SideMenuStyles>
     </>
 }
