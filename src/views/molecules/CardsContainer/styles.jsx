@@ -1,28 +1,11 @@
-import React from 'react';
 import styled from 'styled-components';
-import { MovieCard } from '../elements/MovieCard';
 
-export const CardsContainer = () => {
-    return <>
-        <CardsContainerStyle>
-            <CardsCarousel>
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-                <MovieCard />
-            </CardsCarousel>
-        </CardsContainerStyle>
-    </>
-}
-
-const CardsContainerStyle = styled.div`
+export const CardsContainerStyle = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
 `
-const CardsCarousel = styled.div`
+export const CardsCarousel = styled.div`
 width: 100%;
 height: 400px;
 display: flex;
@@ -48,4 +31,4 @@ padding-right: 50px;
     overflow-x: scroll;
     height:400px;
 }
-`
+`;

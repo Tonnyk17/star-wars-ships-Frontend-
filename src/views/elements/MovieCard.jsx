@@ -3,11 +3,15 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Color } from '../atoms/Colors';
 
-export const MovieCard = () => {
+export const MovieCard = ({title}) => {
     const history = useHistory();
 
+    const showTitle = () => {
+        history.push('/ships')
+        console.log(title)
+    }
     return <>
-        <MovieCardStyle onClick={() => history.push('/ships')}>
+        <MovieCardStyle onClick={showTitle}>
             <MovieCardImage src='https://4.bp.blogspot.com/-0X-JYjNG7hg/UBJPKgyBxpI/AAAAAAAAJmQ/EZmnn41sW3g/s1600/Star+Wars+-+Attack+Of+The+Clones+(2002)+by+Drew+Struzan.jpg' alt='movie' />
         </MovieCardStyle>
     </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TitleText } from '../../atoms/Typography/TitleText';
-import { CardsContainer } from '../../molecules/CardsContainer';
+import {CardsContainer} from '../../molecules/CardsContainer/CardsContainer';
 
 export const Home = () => {
     return <>
