@@ -19,6 +19,9 @@ export const Favorites = () => {
     const [ships,setShips] = useState([]);
     const [searchText, setSearchText] = useState('');
 
+    useEffect(() => {
+        setShips(selector)
+    },[])
     const handleClick = () => {
         setIsClosed(!isClosed); 
     }
