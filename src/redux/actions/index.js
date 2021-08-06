@@ -5,7 +5,7 @@ import { gql, InMemoryCache } from 'apollo-boost';
 const successGetFilms = payload => ({
     type: 'SUCCESS_GET_FILMS',
     payload
-})
+});
 export const getFilms = (payload) => {
     return dispatch => {
         
@@ -50,6 +50,72 @@ export const getFilms = (payload) => {
     }
 }
 
+const succesGetImages = payload => ({
+    type: "SUCCESS_GET_IMAGES",
+    payload
+});
+
+export const getImages = (payload) => {
+    return dispatch => {
+        const client = new ApolloClient({
+            uri: 'http://localhost:8000/',
+            cache: new InMemoryCache()
+        });
+
+        client.query({
+            query: gql`
+            {
+                films{
+                _id
+                EpisodeID
+                src
+                ships{
+                    id
+                    name
+                    url
+                }
+            }
+            }
+            `}).then(response => dispatch(succesGetImages(response.data.films)))
+    }
+} 
+const successGetFavorite = payload => dispatch => {
+    dispatch({
+        type: "SUCCESS_GET_FAVORITE",
+        payload
+    })
+};
+
+export const getFavorites = (payload) => {
+    return dispatch => {
+        const client = new ApolloClient({
+            uri: 'http://localhost:8000/',
+            cache: new InMemoryCache()
+        });
+
+        client.query({
+            query: gql`
+            {
+                ship{
+                    id
+                    image
+                    name
+                    model
+                    starshipClass
+                    manufacturers
+                    costInCredits
+                    length
+                    crew
+                    passengers
+                    maxAtmospheringSpeed
+                    movies
+                }
+            }
+        
+            `}).then(response => dispatch(successGetFavorite(response.data)))
+    }
+} 
+
 export const getShips = payload => dispatch => {
     dispatch({
         type: 'GET_SHIPS',
@@ -63,17 +129,16 @@ export const selectShip = payload => dispatch => {
         payload
     })
 }
-
-export const addFavorites = payload => dispatch => {
+export const getSelectShip = payload => dispatch => {
     dispatch({
-        type: 'ADD_FAVORITES',
+        type: 'GET_SELECT_SHIP',
         payload
     })
 }
 
-export const removeFavorite = payload => dispatch => {
+export const getShipsImages = payload => dispatch => {
     dispatch({
-        type: 'REMOVE_FAVORITES',
+        type: 'GET_SHIPS_IMAGES',
         payload
     })
 }

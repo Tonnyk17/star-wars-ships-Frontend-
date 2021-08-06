@@ -6,6 +6,11 @@ const reducer = (state, action) => {
                 ...state,
                 starData : action.payload
             }
+        case 'SUCCESS_GET_IMAGES' :
+            return{
+                ...state,
+                images: action.payload
+            }
 
         case 'GET_SHIPS' :
             return{
@@ -18,17 +23,21 @@ const reducer = (state, action) => {
                 ...state,
                 shipSelected: action.payload
             }
-        case  'ADD_FAVORITES':
+        case  'GET_SELECT_SHIP':
                 return{
                     ...state,
-                    favorites: [action.payload]
-                }
-        case  'REMOVE_FAVORITES':
-            console.log(action.payload)
-                return{
-                    ...state,
-                    favorites: state.favorites.filter(item => item.id !== action.payload)
+                    imageSelected: action.payload
                     }
+        case 'GET_SHIPS_IMAGES':
+                return{
+                    ...state,
+                    shipImages: action.payload
+                } 
+        case 'SUCCESS_GET_FAVORITE':
+                    return{
+                        ...state,
+                    favorites: action.payload
+                    } 
         default :
             return state
     }

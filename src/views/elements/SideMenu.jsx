@@ -23,7 +23,7 @@ export const SideMenu = ({ isClose, closeMenu }) => {
                 />
             </MenuButtonContainer>
             <MenuLogoContainer>
-                <MenuLogo src='https://firebasestorage.googleapis.com/v0/b/star-wars-ships.appspot.com/o/logo.png?alt=media&token=d5ca0344-d76c-4de7-af08-272b5c8ab63c' />
+                <MenuLogo src='https://firebasestorage.googleapis.com/v0/b/star-wars-ships.appspot.com/o/logo.png?alt=media&token=d5ca0344-d76c-4de7-af08-272b5c8ab63c' alt={'logo'}/>
             </MenuLogoContainer>
             <HeaderText
                 onClick={() => handleClick('/')}>Home</HeaderText>

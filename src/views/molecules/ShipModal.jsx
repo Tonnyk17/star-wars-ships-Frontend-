@@ -5,20 +5,22 @@ import { Color } from '../atoms/Colors';
 import { IconButton } from '../atoms/IconButton/IconButton';
 import closeIcon from '../../assets/images/close.svg';
 import { Button } from '../atoms/Button';
+import { useSelector } from 'react-redux';
 
 export const ShipModal = ({ onClick, buttonContent, buttonFunction }) => {
-    
+    const modalImage = useSelector(store => store.imageSelected);
     const handleClick = () => {
         onClick();
         buttonFunction();
     }
+    
     return <>
         <ModalContent>
             <ModalStyles>
                 <IconModalContainer>
                     <IconButton image={closeIcon} name='closed' onClick={onClick} />
                 </IconModalContainer>
-                <ModalImage src='https://media.moddb.com/images/mods/1/11/10611/y-wingv2_1_2.png' />
+                <ModalImage src={modalImage} alt={'starship'}/>
                 <div>
                     <ShipCardText />
                     <ButtonContainer>
@@ -104,4 +106,5 @@ const ButtonContainer = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 `;

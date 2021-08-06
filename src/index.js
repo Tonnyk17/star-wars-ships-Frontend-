@@ -7,7 +7,12 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware} from 'redux';
 import reducer from './redux/reducers';
 import reduxThunk from 'redux-thunk';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 
+const client = new ApolloClient({
+  uri: 'http://localhost:8000/'
+})
 const initialState = {};
 const store = createStore(reducer,initialState, applyMiddleware(reduxThunk));
 
@@ -15,7 +20,9 @@ ReactDOM.render(
   <React.StrictMode>
    
        <Provider store={store}>
-        <App />
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
       </Provider>
    
   </React.StrictMode>,

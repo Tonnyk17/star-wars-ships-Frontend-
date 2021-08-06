@@ -5,54 +5,89 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ShipCard } from '../../molecules/ShipCard';
 import { useState } from 'react';
 import { ShipModal } from '../../molecules/ShipModal';
-import { removeFavorite } from '../../../redux/actions';
+import { getFavorites } from '../../../redux/actions';
 import { TitleText } from '../../atoms/Typography/TitleText';
 import { useEffect } from 'react';
-
+import { gql } from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
 
 export const Favorites = () => {
-    const selector = useSelector(store => store.favorites);
+    const selector = useSelector(store => store);
     const ship = useSelector(store => store.shipSelected)
     const dispatch = useDispatch();
     const [isClosed, setIsClosed] = useState(true);
-    const [favoriteShips, setFavoriteShips] = useState(selector);
     const [ships,setShips] = useState([]);
-    const [searchText, setSearchText] = useState('');
+    const [filter, setFilter] = useState(true);
 
     useEffect(() => {
-        setShips(selector)
-    },[])
+        dispatch(getFavorites())
+         
+    },[dispatch])
+    const REMOVE_SHIP = gql`
+    mutation removeShip($id: String!){
+        removeShip(id:$id){id}
+    }
+    `
+    
+    const [removeShip] = useMutation(REMOVE_SHIP);
+
     const handleClick = () => {
         setIsClosed(!isClosed); 
+        
     }
     const handleRemoveShip = () =>{
-        dispatch(removeFavorite(ship.id))
-        setFavoriteShips([]);
+        removeShip({variables:{id:ship.id}})
+        dispatch(getFavorites())
+        setIsClosed(!isClosed); 
+        setFilter(true);
     }
-
+    
     const handleChange = e => {
-        setSearchText(e.target.value);
         handleFilter(e.target.value);
+       setFilter(false);
     }
     const handleFilter = filterText => {
-        let filterShips = favoriteShips.filter(ship => {
+        // eslint-disable-next-line array-callback-return
+        let filterShips = selector.favorites.ship.filter((ship) => {
             if(ship.name.toString().toLowerCase().includes(filterText.toLowerCase())){
                 return ship
             }
         })
         setShips(filterShips)
     }
-
-   console.log(ships)
-    return selector !== undefined ? <>
+   
+    return selector.favorites !== undefined ? <>
         {isClosed ? 
             <div>
                 <Search onChange={handleChange}/>
+                {ships === undefined || filter ? 
                 <FavoriteStyles>
-                    {
-                        ships.map((item, i) => <ShipCard onClick={handleClick} shipData={item} key={i}/>)
-                    }
-                </FavoriteStyles>
+                {
+                    selector
+                    .favorites
+                    .ship
+                    .map((item, i) => <ShipCard 
+                                        onClick={handleClick} 
+                                        shipData={item} 
+                                        key={i} 
+                                        image={item.image}
+                                    />)
+                }
+                </FavoriteStyles>      
+                :
+                <FavoriteStyles>
+                {
+                   ships
+                   .map((item, i) => <ShipCard 
+                                        onClick={handleClick} 
+                                        shipData={item} 
+                                        key={i} 
+                                        image={item.image}
+                                    />)
+                }
+                </FavoriteStyles>         
+                }
+               
             </div> 
             :
             <ShipModal 
@@ -63,7 +98,7 @@ export const Favorites = () => {
         }
         
     </>
-    :
+    :  
     <>
         <EmptyMessage>
              <TitleText>Wow! It seems that you still do not have favorite ships</TitleText>

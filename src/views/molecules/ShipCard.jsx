@@ -1,19 +1,20 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { selectShip } from '../../redux/actions';
+import { getSelectShip, selectShip } from '../../redux/actions';
 import { Color } from '../atoms/Colors';
 
-export const ShipCard = ({ onClick, shipData }) => {
+export const ShipCard = ({ onClick, shipData, images,image }) => {
     const dispatch = useDispatch();
 
     const handleClick = () => {
         onClick();
         dispatch(selectShip(shipData))
+        dispatch(getSelectShip(window.location.pathname === "/favorites" ? image : images.url))
     }
     return <>
         <ShipCardStyle onClick={handleClick}>
-            <ShipImage src='https://media.moddb.com/images/mods/1/11/10611/y-wingv2_1_2.png' />
+            <ShipImage src={window.location.pathname === "/favorites" ? image : images.url} alt={'starship'}/>
         </ShipCardStyle>
     </>
 }

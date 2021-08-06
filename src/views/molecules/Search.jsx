@@ -8,7 +8,7 @@ export const Search = ({onChange}) => {
     return<>
         <SearchStyles>
             <SearchInput placeholder='Search Starship...' onChange={onChange}/>
-            <Icon src={searchIcon}/>
+            <Icon src={searchIcon} alt={'search'}/>
            
         </SearchStyles>
     </>

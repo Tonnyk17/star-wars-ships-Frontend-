@@ -45,7 +45,10 @@ export const ShipCardText = () => {
             </ShipTextContainer>
             <ShipTextContainer>
                 <CardText>Films:</CardText>
-                <CardText>{selector.filmConnection.films.map(item => `Episode ${item.episodeID} ${item.title}, `)}</CardText>
+                <CardText>{window.location.pathname === "/favorites" 
+                ? selector.movies.map(item => `${item}, `) 
+                : selector.filmConnection.films.map(item => `Episode ${item.episodeID} ${item.title}, `)}
+                </CardText>
             </ShipTextContainer>
         </ShipTextStyle>
     </>
