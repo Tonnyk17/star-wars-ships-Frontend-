@@ -58,7 +58,7 @@ const succesGetImages = payload => ({
 export const getImages = (payload) => {
     return dispatch => {
         const client = new ApolloClient({
-            uri: 'http://localhost:8000/',
+            uri: 'https://starships-backend.herokuapp.com/',
             cache: new InMemoryCache()
         });
 
@@ -89,7 +89,7 @@ const successGetFavorite = payload => dispatch => {
 export const getFavorites = (payload) => {
     return dispatch => {
         const client = new ApolloClient({
-            uri: 'http://localhost:8000/',
+            uri: 'https://starships-backend.herokuapp.com/',
             cache: new InMemoryCache()
         });
 

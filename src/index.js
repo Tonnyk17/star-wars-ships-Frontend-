@@ -11,7 +11,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/'
+  uri: 'https://starships-backend.herokuapp.com/'
 })
 const initialState = {};
 const store = createStore(reducer,initialState, applyMiddleware(reduxThunk));
