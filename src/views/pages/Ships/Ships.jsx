@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
+import { useEffect } from 'react';
 
 
 export const Ships = () => {
@@ -14,6 +15,7 @@ export const Ships = () => {
     const [isClosed, setIsClosed] = useState(true);
     const selector = useSelector(store => store);
     const shipSelected = useSelector(store => store.shipSelected);
+    const [filtered,setFilteres] = useState([]);
 
     const ADD_SHIP = gql`
             mutation createShip(
@@ -68,6 +70,17 @@ export const Ships = () => {
             setIsClosed(!isClosed);
         }
    
+        const shipsFilter = payload => {
+            const org = new Set(payload);
+            setFilteres([...org])
+        }
+        
+        useEffect(() => {
+           if(selector.ships !== undefined){
+            shipsFilter(selector.ships.starships)
+           }
+        },[])
+        
     return selector.ships === undefined ? <Redirect to='/'/> : <>
         {isClosed ? null :
             <ShipModal 
@@ -79,7 +92,7 @@ export const Ships = () => {
         <TitleText>Choose a Ship...</TitleText>
         <ShipsStyle>
             {
-                selector.ships.starships.map((item, i) => 
+                filtered.map((item, i) => 
                 <ShipCard 
                     onClick={handleClick} 
                     shipData={item} key={i} 
