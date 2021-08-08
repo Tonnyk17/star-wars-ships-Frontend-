@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilms, getImages } from '../../../redux/actions';
 import { CardsContainerStyle, CardsCarousel } from './styles';
 import { useEffect } from 'react';
+import { TitleText } from '../../atoms/Typography/TitleText';
 
 export const CardsContainer = () => {
     const selector = useSelector(store => store);
@@ -18,7 +19,9 @@ export const CardsContainer = () => {
     },[dispatch]);
 
     return isReady ? <>
+         <TitleText>Choose a film...</TitleText>
         <CardsContainerStyle>
+           
             <CardsCarousel>
                {
                 selector
@@ -36,5 +39,11 @@ export const CardsContainer = () => {
                 }
             </CardsCarousel>
         </CardsContainerStyle>
-    </>: null
+    </>
+    : 
+        <CardsContainerStyle>
+                <CardsCarousel>
+                    <TitleText>Loading...</TitleText>   
+                </CardsCarousel> 
+        </CardsContainerStyle>
 }

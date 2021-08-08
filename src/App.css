@@ -1,7 +1,5 @@
 .App {
   text-align: center;
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/star-wars-ships.appspot.com/o/background.jpg?alt=media&token=71faaf6d-040d-44c7-98e0-5235b66b22d3");
-  height: 100vh;
 }
 ::-webkit-scrollbar {
   width: 5px;

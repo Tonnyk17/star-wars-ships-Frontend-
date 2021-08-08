@@ -31,8 +31,10 @@ const MovieCardStyle = styled.div`
     margin:10px;
     cursor:pointer;
     border: 1px solid ${Color.yellowLight};
-    &: hover{
-        transform: scale(1.1);
+    @media screen and (min-width: 1025px){
+        &: hover{
+            transform: scale(1.1);
+        }
     }
 `
 const MovieCardImage = styled.img`
