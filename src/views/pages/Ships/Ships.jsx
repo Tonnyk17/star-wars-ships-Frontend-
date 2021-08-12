@@ -89,7 +89,7 @@ export const Ships = () => {
             buttonFunction={handleAddFavorites}
             />
         }
-        <TitleText>Choose a Ship...</TitleText>
+        <TitleText>Choose a Starship...</TitleText>
         <ShipsStyle>
             {
                 filtered.map((item, i) => 
